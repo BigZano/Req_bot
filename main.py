@@ -10,7 +10,7 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 GUILD = os.getenv('GUILD')
 CATEGORY = os.getenv('CATEGORY')
-EMBARKATION_DECK = os.getenv('CHANNEL')
+EMBARKATION_DECK = os.getenv('EMBARKATION_DECK')
 LFG_CHANNEL = os.getenv('LFG_CHANNEL')
 
 # Set up logging
@@ -31,115 +31,23 @@ intents.members = True
 intents.voice_states = True
 
 # We need to use commands.Bot instead of Client for UI components
+
 from discord.ext import commands
+from discord import app_commands
 client = commands.Bot(command_prefix='/', intents=intents)
+
 
 # Dictionary to track created voice channels
 created_voice_channels = {}
 
-class VoiceChannelModal(ui.Modal, title='Create Voice Channel'):
-    channel_name = ui.TextInput(
-        label='Channel Name',
-        placeholder='Enter a name for your voice channel',
-        required=True,
-        max_length=100
-    )
-    
-    members = ui.TextInput(
-        label='Members',
-        placeholder='@mention members to add (separate with spaces)',
-        required=False,
-        style=discord.TextStyle.paragraph
-    )
-    
-    capacity = ui.TextInput(
-        label='Capacity',
-        placeholder='Enter max members (or leave blank for unlimited)',
-        required=False,
-        max_length=3
-    )
-
-    async def on_submit(self, interaction: discord.Interaction):
-        try:
-            channel_name = self.channel_name.value
-
-            capacity = None
-            if self.capacity.value:
-                try:
-                    capacity = int(self.capacity.value)
-                    if capacity < 1:
-                        capacity = None
-                except ValueError:
-                    capacity = None
-                    logging.warning(f"Invalid capacity value provided: {self.capacity.value}")
-
-            valid_members = []
-            embarkation_channel = interaction.guild.get_channel(int(EMBARKATION_DECK))
-            
-            if embarkation_channel and self.members.value:
-                embarkation_members = embarkation_channel.members
-                mention_ids = [
-                    int(id_str) for id_str in 
-                    [m.strip('<@!>') for m in self.members.value.split()]
-                    if id_str.isdigit()
-                ]
-                
-                for member_id in mention_ids:
-                    member = interaction.guild.get_member(member_id)
-                    if member and member in embarkation_members:
-                        valid_members.append(member)
-                    else:
-                        logging.info(f"Member {member_id} not found in Embarkation Deck")
-
-            # Create the voice channel
-            category = interaction.guild.get_channel(int(CATEGORY))
-            new_channel = await interaction.guild.create_voice_channel(
-                name=channel_name,
-                user_limit=capacity,
-                category=category
-            )
-
-            # Add channel to tracking dictionary
-            created_voice_channels[new_channel.id] = {
-                'name': channel_name,
-                'creator': interaction.user.id,
-                'created_at': datetime.now()
-            }
-
-            logging.info(f"Created voice channel: {channel_name} (ID: {new_channel.id})")
-
-            # Move the command author if they're in a voice channel
-            if interaction.user.voice:
-                await interaction.user.move_to(new_channel)
-                logging.info(f"Moved creator {interaction.user.display_name} to channel {channel_name}")
-
-            # Move valid members
-            moved_members = []
-            for member in valid_members:
-                if member.voice:
-                    try:
-                        await member.move_to(new_channel)
-                        moved_members.append(member.display_name)
-                        logging.info(f"Moved member {member.display_name} to channel {channel_name}")
-                    except discord.errors.HTTPException as e:
-                        logging.error(f"Failed to move {member.display_name}: {str(e)}")
-                        continue
-
-            await interaction.response.send_message(
-                f"Created channel '{channel_name}' and moved {len(moved_members)} members.",
-                ephemeral=True
-            )
-
-        except Exception as e:
-            logging.error(f"Error in channel creation: {str(e)}")
-            await interaction.response.send_message(
-                f"An error occurred: {str(e)}",
-                ephemeral=True
-            )
-
 @client.event
 async def on_ready():
     logging.info(f'Bot {client.user} has connected to Discord!')
+    try:
+        synced = await client.tree.sync()
+        logging.info(f'Synced {len(synced)} slash commands.')
+    except Exception as e:
+        logging.error(f'Failed to sync slash commands: {e}')
 
 @client.event
 async def on_voice_state_update(member, before, after):
@@ -171,23 +79,99 @@ async def on_voice_state_update(member, before, after):
     except Exception as e:
         logging.error(f"Error in voice state update handler: {str(e)}")
 
-@client.command()
-async def req(ctx):
+
+
+# Register as a slash command with options
+
+@client.tree.command(name="req", description="Request a voice channel for your group.")
+@app_commands.describe(
+    channel_name="Name for your voice channel",
+    teammate1="Teammate to move (optional)",
+    teammate2="Teammate to move (optional)",
+    capacity="Max members (optional)"
+)
+@app_commands.guild_only()
+async def req(
+    interaction: discord.Interaction,
+    channel_name: str,
+    teammate1: discord.Member = None,
+    teammate2: discord.Member = None,
+    capacity: int = None
+):
     try:
-        # Check if the command is used in the LFG channel
-        if str(ctx.channel.id) != LFG_CHANNEL:
-            await ctx.reply("Please use this command in the LFG channel.")
-            logging.warning(f"User {ctx.author.display_name} attempted to use /req in wrong channel")
+        # Check for required environment variables
+        if not CATEGORY or not LFG_CHANNEL:
+            await interaction.response.send_message("Bot misconfiguration: CATEGORY or LFG_CHANNEL not set.", ephemeral=True)
+            logging.error("CATEGORY or LFG_CHANNEL environment variable not set.")
             return
 
-        # Create and show the modal
-        modal = VoiceChannelModal()
-        await ctx.send_modal(modal)
-        logging.info(f"Sent voice channel creation modal to {ctx.author.display_name}")
+        # Check if the command is used in the LFG channel
+        if str(interaction.channel.id) != str(LFG_CHANNEL):
+            await interaction.response.send_message("Please use this command in the LFG channel.", ephemeral=True)
+            logging.warning(f"User {interaction.user.display_name} attempted to use /req in wrong channel")
+            return
+
+        # Validate capacity
+        if capacity is not None and (capacity < 1 or capacity > 99):
+            await interaction.response.send_message("Capacity must be between 1 and 99.", ephemeral=True)
+            return
+
+
+        # Create the voice channel
+        try:
+            category_id = int(CATEGORY)
+        except (TypeError, ValueError):
+            await interaction.response.send_message("Bot misconfiguration: CATEGORY is not a valid channel ID.", ephemeral=True)
+            logging.error("CATEGORY environment variable is not a valid integer.")
+            return
+        category = interaction.guild.get_channel(category_id)
+        if not category:
+            await interaction.response.send_message("Category channel not found.", ephemeral=True)
+            return
+
+        new_channel = await interaction.guild.create_voice_channel(
+            name=channel_name,
+            user_limit=capacity,
+            category=category
+        )
+
+        # Add channel to tracking dictionary
+        created_voice_channels[new_channel.id] = {
+            'name': channel_name,
+            'creator': interaction.user.id,
+            'created_at': datetime.now()
+        }
+
+        logging.info(f"Created voice channel: {channel_name} (ID: {new_channel.id})")
+
+
+        # Move the command author if they're in a voice channel
+        if interaction.user.voice and interaction.user.voice.channel:
+            await interaction.user.move_to(new_channel)
+            logging.info(f"Moved creator {interaction.user.display_name} to channel {channel_name}")
+
+
+        # Move valid teammates
+        moved_members = []
+        for teammate in [teammate1, teammate2]:
+            if teammate and teammate.voice and teammate.voice.channel:
+                try:
+                    await teammate.move_to(new_channel)
+                    moved_members.append(teammate.display_name)
+                    logging.info(f"Moved member {teammate.display_name} to channel {channel_name}")
+                except discord.errors.HTTPException as e:
+                    logging.error(f"Failed to move {teammate.display_name}: {str(e)}")
+                    continue
+
+        await interaction.response.send_message(
+            f"Created channel '{channel_name}' and moved {len(moved_members)} teammates.",
+            ephemeral=True
+        )
 
     except Exception as e:
         logging.error(f"Error processing /req command: {str(e)}")
-        await ctx.reply("An error occurred while processing your request.")
+        if not interaction.response.is_done():
+            await interaction.response.send_message("An error occurred while processing your request.", ephemeral=True)
 
 
         

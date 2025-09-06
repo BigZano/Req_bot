@@ -1,0 +1,1 @@
+If anyone even ever reads this lol, this is just a simple Discord bot written in Python to move folks into newly created VCs. You'll want to create your own .env file to fill out the variables, and it's written to write logs out to log.txt. She's not elegent, but I'm not a professional lol. 

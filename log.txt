@@ -1,0 +1,4 @@
+2025-09-09 13:53:25,588 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 13:53:25,589 - INFO - logging in using static token
+2025-09-09 13:53:26,378 - INFO - Shard ID None has connected to Gateway (Session ID: e6fd98cac5f2028ab5bbfbf7f246978b).
+2025-09-09 13:53:28,414 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!

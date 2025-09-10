@@ -2,3 +2,179 @@
 2025-09-09 13:53:25,589 - INFO - logging in using static token
 2025-09-09 13:53:26,378 - INFO - Shard ID None has connected to Gateway (Session ID: e6fd98cac5f2028ab5bbfbf7f246978b).
 2025-09-09 13:53:28,414 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 14:13:35,957 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:14:22,491 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:14:22,492 - INFO - logging in using static token
+2025-09-09 14:14:23,297 - INFO - Shard ID None has connected to Gateway (Session ID: 07b969d95b1be8c50f87e72decbd3a03).
+2025-09-09 14:14:25,701 - INFO - Synced 0 command(s)
+2025-09-09 14:14:25,701 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 14:16:27,290 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:16:27,291 - INFO - logging in using static token
+2025-09-09 14:16:28,100 - INFO - Shard ID None has connected to Gateway (Session ID: 0af2017c2060f8ab4b0b61ba13cc1563).
+2025-09-09 14:16:30,377 - INFO - Synced 2 command(s)
+2025-09-09 14:16:30,377 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 14:24:42,030 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:24:42,032 - INFO - logging in using static token
+2025-09-09 14:24:42,825 - INFO - Shard ID None has connected to Gateway (Session ID: bcc58bdd8f9dd4b2eb615a0b8ffb4dd3).
+2025-09-09 14:24:45,299 - INFO - Synced 2 command(s)
+2025-09-09 14:24:45,299 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 14:26:21,364 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:26:21,365 - INFO - logging in using static token
+2025-09-09 14:26:22,195 - INFO - Shard ID None has connected to Gateway (Session ID: e4e2eb1caf9cf40c0493bc2101be2c57).
+2025-09-09 14:26:24,550 - INFO - Available commands: 
+2025-09-09 14:26:24,551 - INFO - Synced 0 command(s)
+2025-09-09 14:26:24,551 - INFO - Hybrid commands: help, timer, req
+2025-09-09 14:26:24,551 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 14:27:41,126 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:27:41,127 - INFO - logging in using static token
+2025-09-09 14:27:41,851 - INFO - Command tree synced in setup_hook
+2025-09-09 14:27:42,241 - INFO - Shard ID None has connected to Gateway (Session ID: ed15079fe2311914d4b6b79eb2149f6b).
+2025-09-09 14:27:44,275 - INFO - Application commands: timer, req
+2025-09-09 14:27:44,275 - INFO - Hybrid commands: help, req, timer
+2025-09-09 14:27:44,275 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 14:53:03,307 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:53:03,308 - INFO - logging in using static token
+2025-09-09 14:53:04,047 - INFO - Command tree synced to guild 1322056087792521269
+2025-09-09 14:53:04,383 - INFO - Shard ID None has connected to Gateway (Session ID: 31dcebf26593449996c240bda07c687c).
+2025-09-09 14:53:06,595 - INFO - Application commands: timer, req
+2025-09-09 14:53:06,595 - INFO - Hybrid commands: timer, req, help
+2025-09-09 14:53:06,595 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 14:56:02,660 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:56:02,661 - INFO - logging in using static token
+2025-09-09 14:56:04,625 - INFO - Command tree synced to guild 1322056087792521269
+2025-09-09 14:56:04,968 - INFO - Shard ID None has connected to Gateway (Session ID: 11095eb2fd349e5af61897522de21442).
+2025-09-09 14:56:07,188 - INFO - Application commands: timer, req
+2025-09-09 14:56:07,188 - INFO - Hybrid commands: req, help, set_timer
+2025-09-09 14:56:07,188 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 14:59:17,521 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 14:59:17,521 - INFO - logging in using static token
+2025-09-09 14:59:18,051 - INFO - Command tree synced to guild 1322056087792521269
+2025-09-09 14:59:18,348 - INFO - Shard ID None has connected to Gateway (Session ID: a156ade1a94c7984a225b143218a2f7f).
+2025-09-09 14:59:20,579 - INFO - Application commands: timer, req
+2025-09-09 14:59:20,579 - INFO - Hybrid commands: help
+2025-09-09 14:59:20,579 - INFO - Bot Reinforcements Bot#7150 has connected to Discord!
+2025-09-09 15:07:32,761 - INFO - Shard ID None has successfully RESUMED session a156ade1a94c7984a225b143218a2f7f.
+2025-09-09 16:09:27,310 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 16:09:27,311 - INFO - discord.client - logging in using static token
+2025-09-09 16:11:07,522 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 16:11:07,523 - INFO - discord.client - logging in using static token
+2025-09-09 16:11:08,027 - INFO - __main__ - Loaded cogs: voice_cog, timer_cog
+2025-09-09 16:11:08,256 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 16:11:08,608 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: fd3afcbd97e38e87f486d407b7c618c7).
+2025-09-09 16:11:08,609 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 16:11:10,691 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 16:11:10,691 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 16:11:10,895 - INFO - __main__ - Application commands: timer, req
+2025-09-09 16:11:10,895 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 16:11:10,895 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 16:29:05,969 - INFO - discord.client - logging in using static token
+2025-09-09 16:29:10,018 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 16:29:10,019 - INFO - discord.client - logging in using static token
+2025-09-09 16:29:10,394 - INFO - __main__ - Loaded cog: voice_cog
+2025-09-09 16:29:10,395 - INFO - __main__ - Loaded cog: timer_cog
+2025-09-09 16:29:11,064 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 16:29:11,712 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: 5a933b4c4d7203b666a2cf430977d33c).
+2025-09-09 16:29:11,712 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 16:29:13,750 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 16:29:13,750 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 16:29:13,928 - INFO - __main__ - Application commands: timer, req
+2025-09-09 16:29:13,928 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 16:29:13,928 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 16:56:25,708 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 16:56:25,709 - INFO - discord.client - logging in using static token
+2025-09-09 16:56:26,176 - INFO - __main__ - Loaded cog: voice_cog
+2025-09-09 16:56:26,177 - INFO - __main__ - Loaded cog: timer_cog
+2025-09-09 16:56:26,396 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 16:56:26,963 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: 9d213a75363b8e32d5244ecc0a7d432d).
+2025-09-09 16:56:26,963 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 16:56:29,009 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 16:56:29,009 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 16:56:29,179 - INFO - __main__ - Application commands: timer, req
+2025-09-09 16:56:29,179 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 16:56:29,179 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 16:56:57,856 - WARNING - cogs - User Pyre Guard Barreus attempted to use /req in wrong channel
+2025-09-09 17:07:42,903 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 17:07:42,903 - INFO - discord.client - logging in using static token
+2025-09-09 17:07:43,385 - WARNING - __main__ - Failed to clear existing guild commands: object NoneType can't be used in 'await' expression
+2025-09-09 17:07:43,388 - INFO - __main__ - Loaded cog: voice_cog
+2025-09-09 17:07:43,389 - INFO - __main__ - Loaded cog: timer_cog
+2025-09-09 17:07:43,570 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 17:07:44,309 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: 4d258f2b09db52824db061ef2918775f).
+2025-09-09 17:07:44,310 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 17:07:46,338 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 17:07:46,339 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 17:07:46,667 - INFO - __main__ - Application commands: timer, req
+2025-09-09 17:07:46,667 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 17:07:46,667 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 17:08:03,621 - ERROR - discord.ext.commands.bot - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "resync" is not found
+2025-09-09 17:11:21,605 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 17:11:21,605 - INFO - discord.client - logging in using static token
+2025-09-09 17:11:22,281 - WARNING - __main__ - Failed to clear existing guild commands: object NoneType can't be used in 'await' expression
+2025-09-09 17:11:22,282 - INFO - __main__ - Loaded cog: voice_cog
+2025-09-09 17:11:22,282 - INFO - __main__ - Loaded cog: timer_cog
+2025-09-09 17:11:22,437 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 17:11:22,833 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: abfc010b3163aef0a8a50d5f39006e87).
+2025-09-09 17:11:22,833 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 17:11:24,879 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 17:11:24,879 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 17:11:25,081 - INFO - __main__ - Application commands: timer, req
+2025-09-09 17:11:25,081 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 17:11:25,081 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 17:13:37,493 - ERROR - discord.ext.commands.bot - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "resync" is not found
+2025-09-09 17:15:41,198 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 17:15:41,199 - INFO - discord.client - logging in using static token
+2025-09-09 17:15:41,723 - WARNING - __main__ - Failed to clear existing guild commands: object NoneType can't be used in 'await' expression
+2025-09-09 17:15:41,724 - INFO - __main__ - Loaded cog: voice_cog
+2025-09-09 17:15:41,725 - INFO - __main__ - Loaded cog: timer_cog
+2025-09-09 17:15:41,926 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 17:15:42,627 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: 71bf2be5817c98f554283d00a5f94c02).
+2025-09-09 17:15:42,628 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 17:15:44,659 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 17:15:44,659 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 17:15:44,825 - INFO - __main__ - Application commands: timer, req
+2025-09-09 17:15:44,825 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 17:15:44,825 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 17:28:31,828 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 17:28:31,829 - INFO - discord.client - logging in using static token
+2025-09-09 17:28:32,384 - WARNING - __main__ - Failed to clear existing guild commands: object NoneType can't be used in 'await' expression
+2025-09-09 17:28:32,385 - INFO - __main__ - Loaded cog: voice_cog
+2025-09-09 17:28:32,386 - INFO - __main__ - Loaded cog: timer_cog
+2025-09-09 17:28:32,584 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 17:28:33,477 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: 0f07bdaaa8831328b565ff880f9d7e5f).
+2025-09-09 17:28:33,477 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 17:28:35,519 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 17:28:35,519 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 17:28:35,804 - INFO - __main__ - Application commands: timer, req
+2025-09-09 17:28:35,804 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 17:28:35,804 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 17:37:32,581 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 17:37:32,581 - INFO - discord.client - logging in using static token
+2025-09-09 17:37:33,045 - WARNING - __main__ - Failed to clear existing guild commands: object NoneType can't be used in 'await' expression
+2025-09-09 17:37:33,046 - INFO - __main__ - Loaded cog: voice_cog
+2025-09-09 17:37:33,049 - INFO - __main__ - Loaded cog: timer_cog
+2025-09-09 17:37:33,050 - INFO - __main__ - Loaded cog: admin_cog
+2025-09-09 17:37:33,219 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 17:37:33,607 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: 62ad66ec12cf7302437021fd75199984).
+2025-09-09 17:37:33,607 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 17:37:35,638 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 17:37:35,638 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 17:37:35,826 - INFO - __main__ - Application commands: timer, req
+2025-09-09 17:37:35,827 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 17:37:35,827 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 17:42:12,139 - WARNING - discord.client - PyNaCl is not installed, voice will NOT be supported
+2025-09-09 17:42:12,140 - INFO - discord.client - logging in using static token
+2025-09-09 17:42:12,966 - INFO - __main__ - Cleared existing guild commands for guild 1322056087792521269
+2025-09-09 17:42:12,967 - INFO - __main__ - Loaded cog: voice_cog
+2025-09-09 17:42:12,968 - INFO - __main__ - Loaded cog: timer_cog
+2025-09-09 17:42:12,969 - INFO - __main__ - Loaded cog: admin_cog
+2025-09-09 17:42:13,218 - INFO - __main__ - Command tree synced to guild 1322056087792521269
+2025-09-09 17:42:13,629 - INFO - discord.gateway - Shard ID None has connected to Gateway (Session ID: fa2ebd7c21f1df91d64bf440b2c5a114).
+2025-09-09 17:42:13,630 - INFO - __main__ - Bot connected to Discord gateway
+2025-09-09 17:42:15,657 - INFO - cogs - [Voice] Cog is ready
+2025-09-09 17:42:15,658 - INFO - cogs - [Timer] Cog is ready
+2025-09-09 17:42:15,937 - INFO - __main__ - Application commands: timer, req
+2025-09-09 17:42:15,937 - INFO - __main__ - Connected to guild: XVIIIth Legiones Astartes. The Salamanders (ID: 1322056087792521269)
+2025-09-09 17:42:15,937 - INFO - __main__ - Bot Reinforcements Bot#7150 is ready!
+2025-09-09 17:48:07,510 - INFO - cogs - [Timer] Sent DM to owner _mjolnir for timer completion

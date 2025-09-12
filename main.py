@@ -7,27 +7,22 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-GUILD = os.getenv('GUILD')  # optional, use for guild sync if set
+GUILD = os.getenv('GUILD')
 
-# Validate required env vars quickly
+# Validate required env vars
 if not TOKEN:
     raise SystemExit("TOKEN not set in environment")
 
 # Set up logging
+log_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'log.log')
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
+    format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.StreamHandler(),
-        logging.FileHandler('log.txt', encoding='utf-8')
+        logging.FileHandler(log_file, encoding='utf-8'),
+        logging.StreamHandler()
     ]
 )
-
-# Create logger for this file
-logger = logging.getLogger(__name__)
-
-# Create logger for cogs
-cog_logger = logging.getLogger('cogs')
 
 # Update intents for the client
 intents = discord.Intents.default()
@@ -35,78 +30,91 @@ intents.message_content = True
 intents.members = True
 intents.voice_states = True
 
+
 class Bot(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix='/', intents=intents, application_id=None)
+        super().__init__(command_prefix='/', intents=intents)
 
     async def setup_hook(self):
-        # If a guild is configured, clear guild-scoped commands first to remove stray commands
+        """Load cogs and sync commands"""
+        # Load cogs
         try:
-            if GUILD:
-                guild_obj = discord.Object(id=int(GUILD))
-                # clear_commands is synchronous; do not await it
-                self.tree.clear_commands(guild=guild_obj)
-                logger.info("Cleared existing guild commands for guild %s", GUILD)
+            await self.load_extension('voice_cog')
+            logging.info('Loaded cog: voice_cog')
         except Exception as e:
-            logger.warning("Failed to clear existing guild commands: %s", e)
-
-        # Load cogs by importing their modules and adding cog instances
-        try:
-            import voice_cog
-            await self.add_cog(voice_cog.VoiceCog(self))
-            logger.info("Loaded cog: voice_cog")
-        except Exception as e:
-            logger.error("Failed to load voice_cog: %s", e)
+            logging.error(f'Failed to load voice_cog: {e}')
 
         try:
-            import timer_cog
-            await self.add_cog(timer_cog.TimerCog(self))
-            logger.info("Loaded cog: timer_cog")
+            await self.load_extension('timer_cog')
+            logging.info('Loaded cog: timer_cog')
         except Exception as e:
-            logger.error("Failed to load timer_cog: %s", e)
+            logging.error(f'Failed to load timer_cog: {e}')
 
         try:
-            import admin_cog
-            await self.add_cog(admin_cog.AdminCog(self))
-            logger.info("Loaded cog: admin_cog")
+            await self.load_extension('admin_cog')
+            logging.info('Loaded cog: admin_cog')
         except Exception as e:
-            logger.error("Failed to load admin_cog: %s", e)
+            logging.error(f'Failed to load admin_cog: {e}')
 
         # Sync commands to guild if GUILD is set, otherwise global
         try:
             if GUILD:
                 guild_obj = discord.Object(id=int(GUILD))
-                await self.tree.sync(guild=guild_obj)
-                logger.info("Command tree synced to guild %s", GUILD)
+                synced = await self.tree.sync(guild=guild_obj)
+                logging.info(f'Synced {len(synced)} slash commands to guild {GUILD}.')
             else:
-                await self.tree.sync()
-                logger.info("Command tree synced globally")
+                synced = await self.tree.sync()
+                logging.info(f'Synced {len(synced)} slash commands globally.')
         except Exception as e:
-            logger.error("Failed to sync command tree: %s", e)
+            logging.error(f'Failed to sync slash commands: {e}')
+
 
 client = Bot()
 
-@client.event
-async def on_connect():
-    logger.info("Bot connected to Discord gateway")
 
 @client.event
 async def on_ready():
-    # Log available commands
-    app_cmds = [c.name for c in await client.tree.fetch_commands()] if client.tree else []
-    logger.info("Application commands: %s", ", ".join(app_cmds))
-    
-    # Log guild information
-    if GUILD:
-        guild = client.get_guild(int(GUILD))
-        if guild:
-            logger.info("Connected to guild: %s (ID: %s)", guild.name, guild.id)
-        else:
-            logger.warning("Configured guild ID %s not found", GUILD)
+    logging.info(f'Bot {client.user} has connected to Discord!')
+
+
+@client.tree.error
+async def on_app_command_error(interaction: discord.Interaction, error):
+    """Handle app command errors gracefully"""
+    try:
+        if isinstance(error, discord.app_commands.CommandNotFound):
+            # Handle stale commands that Discord still has cached
+            try:
+                await interaction.response.send_message(
+                    "⚠️ This command has been updated. Please try using `/request` for voice channels or `/set` for timers. Discord will refresh the command list automatically.",
+                    ephemeral=True
+                )
+            except Exception:
+                try:
+                    await interaction.followup.send(
+                        "⚠️ This command has been updated. Please try using `/request` for voice channels or `/set` for timers.",
+                        ephemeral=True
+                    )
+                except Exception:
+                    pass
             
-    logger.info("Bot %s is ready!", client.user)
+            # Log the error for debugging
+            cmd_name = getattr(interaction.data, 'name', 'unknown') if hasattr(interaction, 'data') else 'unknown'
+            logging.warning(f"Stale command '{cmd_name}' invoked by {interaction.user.display_name} (ID: {interaction.user.id})")
+            return
+        
+        # Handle other app command errors
+        logging.error(f"App command error: {error}", exc_info=True)
+        try:
+            await interaction.response.send_message("An error occurred while processing your command.", ephemeral=True)
+        except Exception:
+            try:
+                await interaction.followup.send("An error occurred while processing your command.", ephemeral=True)
+            except Exception:
+                pass
+                
+    except Exception as handler_error:
+        logging.error(f"Error in app command error handler: {handler_error}", exc_info=True)
 
 
-# Note: resync is provided by AdminCog in admin_cog.py
-
-client.run(TOKEN)
+if __name__ == '__main__':
+    client.run(TOKEN)

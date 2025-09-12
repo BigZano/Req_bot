@@ -11,4 +11,4 @@ wheels/
 
 # .env files
 .env
-log.txt
+log.log

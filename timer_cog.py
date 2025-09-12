@@ -11,7 +11,7 @@ logger = logging.getLogger('cogs')
 
 # Inline command parameters will be used for /set (amount, unit, description)
 
-class TimerCog(commands.Cog):
+class CountdownCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.display_channel = None
@@ -28,7 +28,7 @@ class TimerCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        logger.info("[Timer] Cog is ready")
+        logger.info("[Countdown] Cog is ready")
 
     @app_commands.command(name="set", description="Create a new countdown timer")
     @app_commands.guilds(discord.Object(id=int(os.getenv('GUILD'))))
@@ -78,7 +78,7 @@ class TimerCog(commands.Cog):
         remaining = max(0, target_ts - int(datetime.now(tz=timezone.utc).timestamp()))
 
         embed = discord.Embed(
-            title="⏰ Countdown Timer",
+            title="⏰ Countdown",
             description=desc or "No description provided.",
             color=discord.Color.blue()
         )
@@ -99,20 +99,20 @@ class TimerCog(commands.Cog):
 
             msg = await display_channel.send(embed=embed)
             await interaction.response.send_message(
-                f"Timer created and posted in {display_channel.mention}",
+                f"Countdown created and posted in {display_channel.mention}",
                 ephemeral=True
             )
 
             # Start countdown task (updates every second for HH:MM:SS style)
             self.bot.loop.create_task(self.update_countdown(msg, target_ts, interaction.user))
         except Exception as e:
-            logger.error("[Timer] Failed to create timer: %s", e)
+            logger.error("[Countdown] Failed to create countdown: %s", e)
             await interaction.response.send_message(
                 "Failed to create timer. Please try again.",
                 ephemeral=True
             )
 
-    # Modal-based handler removed; /set now uses inline parameters above
+
 
     @staticmethod
     def format_remaining(seconds: int) -> str:
@@ -154,9 +154,9 @@ class TimerCog(commands.Cog):
                     # DM the owner
                     try:
                         await user.send(f"Your timer has completed: {message.jump_url}")
-                        logger.info("[Timer] Sent DM to owner %s for timer completion", user)
+                        logger.info("[Countdown] Sent DM to owner %s for countdown completion", user)
                     except Exception:
-                        logger.warning("[Timer] Could not DM owner %s", user)
+                        logger.warning("[Countdown] Could not DM owner %s", user)
 
                     break
 
@@ -177,4 +177,4 @@ class TimerCog(commands.Cog):
             logger.exception("Error in countdown task: %s", e)
 
 async def setup(bot):
-    await bot.add_cog(TimerCog(bot))
+    await bot.add_cog(CountdownCog(bot))
